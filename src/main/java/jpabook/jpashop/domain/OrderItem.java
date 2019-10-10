@@ -42,6 +42,8 @@ public class OrderItem {
         item.removeStock(count);
         return orderItem;
     }
+    /*//위의 생성 메서드를 통해서만 생성이 되도록 막음 == @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    protected OrderItem(){}*/
 
     //==비즈니스 로직==//
     public void cancel() {
