@@ -89,4 +89,7 @@ public class OrderRepository {
         TypedQuery<Order> query = entityManager.createQuery(cq).setMaxResults(1000); //최대  1000 건
         return query.getResultList();
     }
+
+   /* public List<Order> findAll(OrderSearch orderSearch) {
+    }*/
 }
