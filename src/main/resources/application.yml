@@ -1,9 +1,13 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/jpashop;MVCC=TRUE
-    username : sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://127.0.0.1:3306/jpashop?autoReconnect=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    username : jpa
+    password: 1q2w3e4r5t
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    dbcp2:
+      test-while-idle: true
+      validation-query: SELECT 1
+    type: com.zaxxer.hikari.HikariDataSource
 
   jpa:
     hibernate:
@@ -12,6 +16,7 @@ spring:
       hibernate:
 #        show-sql: true
         format_sql: true
+        naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
 
   thymeleaf:
     prefix: classpath:/templates/

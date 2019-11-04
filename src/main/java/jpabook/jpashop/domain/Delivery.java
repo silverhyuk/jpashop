@@ -12,7 +12,7 @@ import static javax.persistence.FetchType.*;
 @Getter @Setter
 public class Delivery {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="delivery_id")
     private Long id;
 

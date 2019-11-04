@@ -14,7 +14,7 @@ import static javax.persistence.CascadeType.*;
 @Setter
 public class Member {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="member_id")
     private Long id;
 
