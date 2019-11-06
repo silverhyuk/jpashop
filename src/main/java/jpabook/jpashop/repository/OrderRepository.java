@@ -90,6 +90,38 @@ public class OrderRepository {
         return query.getResultList();
     }
 
+    /**
+     * Fetch Join => 실무에서 제일 많이 쓰이므로 100% 이해 해야 함
+     *               성능 이슈
+     *               옵션이 많으므로 책을 보고 공부 해야 함
+     * @return
+     */
+    public List<Order> findAllWithMemberDelivery() {
+        return entityManager.createQuery(
+                "select o from Order o" +
+                        " join fetch  o.member m" +
+                        " join fetch o.delivery d", Order.class
+                ).getResultList();
+    }
+
+    /**
+     * 일반적인 SQL을 사용할 때 처럼 원하는 값을 선택해서 조회
+     * new 명령어를 사용해서 JPQL의 결과를 DTO로 즉시 변환
+     * SELECT 절에서 원하는 데이터를 직접 선택하므로 DB 애플리케이션 네트웍 용량 최적화(생각보다 미비)
+     * 리포지토리 재사용성 떨어짐, API 스펙에 맞춘 코드가 리포지토리에 들어가는 단점
+     * @return
+     */
+    public List<OrderSimpleQueryDto> findOrderDtos() {
+        return entityManager.createQuery(
+                "select new jpabook.jpashop.repository.OrderSimpleQueryDto(o.id, m.name, o.orderDate, o.status, d.address)" +
+                        " from Order o" +
+                        " join o.member m" +
+                        " join o.delivery d", OrderSimpleQueryDto.class
+                ).getResultList();
+    }
+
+
+
    /* public List<Order> findAll(OrderSearch orderSearch) {
     }*/
 }
