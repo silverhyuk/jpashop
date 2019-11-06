@@ -90,6 +90,20 @@ public class OrderRepository {
         return query.getResultList();
     }
 
+    /**
+     * Fetch Join => 실무에서 제일 많이 쓰이므로 100% 이해 해야 함
+     *               성능 이슈
+     *               옵션이 많으므로 책을 보고 공부 해야 함
+     * @return
+     */
+    public List<Order> findAllWithMemberDelivery() {
+        return entityManager.createQuery(
+                "select o from Order o" +
+                        " join fetch  o.member m" +
+                        " join fetch o.delivery d"
+                ).getResultList();
+    }
+
    /* public List<Order> findAll(OrderSearch orderSearch) {
     }*/
 }

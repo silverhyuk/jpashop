@@ -1,6 +1,5 @@
 package jpabook.jpashop.api.controller;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
 import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.service.MemberService;
