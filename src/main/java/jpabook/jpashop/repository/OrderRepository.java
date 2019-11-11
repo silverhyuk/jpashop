@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Repository
@@ -104,6 +105,17 @@ public class OrderRepository {
                 ).getResultList();
     }
 
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return entityManager.createQuery(
+                "select o from Order o" +
+                        " join fetch  o.member m" +
+                        " join fetch o.delivery d", Order.class
+                ).setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
+
+
     /**
      * distinct 를 사용한 이유는 1대다 조인이 있으므로 데이터베이스 row가 증가한다. 그 결과 같은 order
      * 엔티티의 조회 수도 증가하게 된다. JPA의 distinct는 SQL에 distinct를 추가하고, 더해서 같은 엔티티가
@@ -123,10 +135,6 @@ public class OrderRepository {
                             " join fetch oi.item i ", Order.class)
                 .getResultList();
     }
-
-
-
-
 
    /* public List<Order> findAll(OrderSearch orderSearch) {
     }*/
