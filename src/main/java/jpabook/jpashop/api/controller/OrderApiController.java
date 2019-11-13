@@ -73,6 +73,7 @@ public class OrderApiController {
         return result;
     }
 
+
     @GetMapping("/api/v4/orders")
     public List<OrderQueryDto> ordersV4() {
 
@@ -80,6 +81,12 @@ public class OrderApiController {
 
     }
 
+    @GetMapping("/api/v5/orders")
+    public List<OrderQueryDto> ordersV5() {
+
+        return orderQueryRepository.findAllByDto_optimization();
+
+    }
 
 
     @Data
