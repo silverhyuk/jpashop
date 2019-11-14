@@ -91,8 +91,8 @@ public class OrderApiController {
     }
 
     /**
-     * 한방쿼리..
-     * 페이징 안됨
+     * 장점 : 한방쿼리..
+     * 단점 : 페이징 안됨
      * @return
      */
     @GetMapping("/api/v6/orders")
